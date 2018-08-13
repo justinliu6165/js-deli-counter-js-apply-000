@@ -1,33 +1,33 @@
-var katzDeli = [];
+var count = 0;
 
-function takeANumber(katzDeliLine, name){
-  katzDeliLine.push(name);
-  katzDeli = katzDeliLine;
-  return "Welcome, " + name + ". You are number " + [katzDeli.indexOf(name)+1] + " in line.";
+function takeANumber(katzDeliLine){
+  count++;
+  katzDeliLine.push(count);
+  return "Welcome, You are number " + count;
 }
 
 function nowServing(katzDeliLine){
-  if(katzDeliLine.length < 1){
-    return "There is nobody waiting to be served!"
-  } else {
+  if(katzDeliLine.length > 0){
     var servingCustomer = katzDeliLine.shift();
     return "Currently serving " + servingCustomer +".";
+  } else {
+    return "There is nobody waiting to be served!";
   }
 }
 
-function currentLine(line){
-  if(line.length < 1){
-    return "The line is currently empty."
-  } else {
-    var list = "";
-    for(var i = 0; i < line.length; i++ ){
-        if (i == line.length-1){
-          list += [i+1]+". "+line[i];
+function currentLine(katzDeliLine){
+  if(katzDeliLine.length > 0){
+    var list = "The line is currently: ";
+    for(var i = 0; i < katzDeliLine.length; i++){
+      if (i === katzDeliLine.length-1){
+        list += katzDeliLine[i];
       } else {
-          list += [i+1]+". "+line[i] + ", ";
+        list += katzDeliLine[i] + ", ";  
       }
     }
-      return "The line is currently: " + list;
+    return list;
+  } else {
+    return "The line is currently empty.";
   }
 }
 
